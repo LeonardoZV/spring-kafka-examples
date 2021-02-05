@@ -177,14 +177,14 @@ public class KafkaConfiguration {
         factory.setBatchListener(true);
         
 		DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer((KafkaOperations<String, Record>)this.kafkaTemplate(), 
-				(record, exception) -> { return new TopicPartition(record.topic() + "-dlq", record.partition()); }
+			(record, exception) -> { return new TopicPartition(record.topic() + "-dlq", record.partition()); }
 		);
 	    
 		ExponentialBackOff backOff = new ExponentialBackOff();
 		
-		backOff.setInitialInterval(2000);
+		backOff.setInitialInterval(1000);
 		backOff.setMultiplier(1.5);
-		backOff.setMaxElapsedTime(5000);
+		backOff.setMaxElapsedTime(10000);
 		
 		RecoveringBatchErrorHandler errorHandler = new RecoveringBatchErrorHandler(recoverer, backOff);
         
@@ -193,15 +193,6 @@ public class KafkaConfiguration {
         return factory;
         
     }
-	
-//	@Bean
-//	public void RecoveringBatchErrorHandler(KafkaTemplate<String, String> template) {
-//	    
-//		DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(template);
-//	    
-//		RecoveringBatchErrorHandler errorHandler = new RecoveringBatchErrorHandler(recoverer, new FixedBackOff(2L, 5000));
-//		
-//	}
 	
 	@Bean
     public Map<String, Object> producerConfigs() {

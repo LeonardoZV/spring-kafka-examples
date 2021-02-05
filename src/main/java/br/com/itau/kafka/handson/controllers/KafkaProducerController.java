@@ -11,14 +11,14 @@ import br.com.itau.kafka.handson.services.KafkaProducerService;
 
 @RestController
 public class KafkaProducerController {
-
+	
 	@Autowired
 	public KafkaProducerService kafkaProducerService;	
 	
 	@PostMapping("/produzir")
 	public void produzir(@RequestBody KafkaProducerRequestModel requisicao) throws Exception {
 		
-		this.kafkaProducerService.produzir(requisicao.getTopico(), new Schema.Parser().parse(requisicao.getSchema().toString()), requisicao.getHeader(), requisicao.getPayload());
+		this.kafkaProducerService.produzir(requisicao.getTopico(), new Schema.Parser().parse(requisicao.getSchema().toString()), requisicao.getHeader(), requisicao.getPayload()).wait();
 		
 	}
 	
