@@ -7,6 +7,7 @@ import org.apache.avro.generic.GenericData.Record;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.config.SaslConfigs;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +17,13 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
+import org.springframework.kafka.listener.RecoveringBatchErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
+import org.springframework.util.backoff.ExponentialBackOff;
 
 import io.confluent.kafka.serializers.GenericContainerWithVersion;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
@@ -120,7 +125,7 @@ public class KafkaConfiguration {
 	
 	@Value("${schema.registry.producer.value-subject-name-strategy}")
 	private String schemaRegistryValueSubjectNameStrategy;
-	
+		
 	@Bean
     public Map<String, Object> consumerConfigs() {
 		
@@ -171,9 +176,32 @@ public class KafkaConfiguration {
 
         factory.setBatchListener(true);
         
+		DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer((KafkaOperations<String, Record>)this.kafkaTemplate(), 
+				(record, exception) -> { return new TopicPartition(record.topic() + "-dlq", record.partition()); }
+		);
+	    
+		ExponentialBackOff backOff = new ExponentialBackOff();
+		
+		backOff.setInitialInterval(2000);
+		backOff.setMultiplier(1.5);
+		backOff.setMaxElapsedTime(5000);
+		
+		RecoveringBatchErrorHandler errorHandler = new RecoveringBatchErrorHandler(recoverer, backOff);
+        
+        factory.setBatchErrorHandler(errorHandler);
+        
         return factory;
         
     }
+	
+//	@Bean
+//	public void RecoveringBatchErrorHandler(KafkaTemplate<String, String> template) {
+//	    
+//		DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(template);
+//	    
+//		RecoveringBatchErrorHandler errorHandler = new RecoveringBatchErrorHandler(recoverer, new FixedBackOff(2L, 5000));
+//		
+//	}
 	
 	@Bean
     public Map<String, Object> producerConfigs() {

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
+import org.springframework.kafka.listener.BatchListenerFailedException;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
@@ -34,11 +35,26 @@ public class KafkaConsumerService {
 	@KafkaListener(id = "kafka-handson", containerFactory = "kafkaListenerContainerFactory", topics = "#{kafkaConsumerService.obterTopicos()}", idIsGroup = false)
 	private void consumir(List<Message<Record>> listaEventos) throws Exception {		
 		
-		for(Message<Record> evento : listaEventos) {	
+		int i = 0;
+		
+		for(Message<Record> evento : listaEventos) {
 			
-			CloudEventsMessageHeader header = CloudEventsMessageHeaderMapper.from(evento.getHeaders());
+			try {
+				
+				CloudEventsMessageHeader header = CloudEventsMessageHeaderMapper.from(evento.getHeaders());
+				
+				log.info("Headers: " + objectMapper.writeValueAsString(header) + " | Payload: " + evento.getPayload().toString());
+				
+//				if (header != null)
+//					throw new Exception("Deu ruim");
+				
+			} catch(Exception ex) {
+				
+				throw new BatchListenerFailedException("Falha no processamento do evento", ex, i);
+				
+			}
 			
-			log.info("Headers: " + objectMapper.writeValueAsString(header) + " | Payload: " + evento.getPayload().toString());
+			i++;
 			
 		}
 
