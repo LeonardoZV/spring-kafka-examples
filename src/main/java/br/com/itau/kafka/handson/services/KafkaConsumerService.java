@@ -58,7 +58,7 @@ public class KafkaConsumerService {
 			
 		}
 
-		log.info("Batch Eventos Consumidos");
+		log.info("Batch de eventos consumidos com sucesso.");
 		
 	}
 	

@@ -1,7 +1,5 @@
 package br.com.itau.kafka.handson.services;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData.Record;
 import org.apache.avro.generic.GenericDatumReader;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -24,7 +23,7 @@ public class KafkaProducerService {
 	
 	private DecoderFactory decoderFactory = new DecoderFactory();
 		
-	public CompletableFuture<SendResult<String, Record>> produzir(String topico, Schema schema, JsonNode headerJson, JsonNode payload) throws Exception {
+	public ListenableFuture<SendResult<String, Record>> produzir(String topico, Schema schema, JsonNode headerJson, JsonNode payload) throws Exception {
 
 		Decoder decoder = decoderFactory.jsonDecoder(schema, payload.toString());		
 		DatumReader<Record> reader = new GenericDatumReader<Record>(schema);		
@@ -39,7 +38,7 @@ public class KafkaProducerService {
 			
 		}
 
-		return this.kafkaTemplate.send(record).completable();
+		return this.kafkaTemplate.send(record);
 		
 	}
 

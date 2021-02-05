@@ -187,7 +187,11 @@ public class KafkaConfiguration {
 		backOff.setMaxElapsedTime(10000);
 		
 		RecoveringBatchErrorHandler errorHandler = new RecoveringBatchErrorHandler(recoverer, backOff);
-        
+		
+//		Map<Class<? extends Throwable>, Boolean> map = new HashMap<Class<? extends Throwable>, Boolean>();
+//		
+//		errorHandler.setClassifications(map, true);
+		
         factory.setBatchErrorHandler(errorHandler);
         
         return factory;
