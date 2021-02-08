@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.itau.kafka.handson.models.KafkaProducerRequestModel;
-import br.com.itau.kafka.handson.services.KafkaConsumerService;
 import br.com.itau.kafka.handson.services.KafkaProducerService;
 
 @RestController

@@ -44,10 +44,7 @@ public class KafkaConsumerService {
 				CloudEventsMessageHeader header = CloudEventsMessageHeaderMapper.from(evento.getHeaders());
 				
 				log.info("Headers: " + objectMapper.writeValueAsString(header) + " | Payload: " + evento.getPayload().toString());
-				
-//				if (header != null)
-//					throw new Exception("Deu ruim");
-				
+								
 			} catch(Exception ex) {
 				
 				throw new BatchListenerFailedException("Falha no processamento do evento", ex, i);
