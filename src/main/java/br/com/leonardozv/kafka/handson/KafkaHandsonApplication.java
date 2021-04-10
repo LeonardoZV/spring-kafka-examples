@@ -1,4 +1,4 @@
-package br.com.itau.kafka.handson;
+package br.com.leonardozv.kafka.handson;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;

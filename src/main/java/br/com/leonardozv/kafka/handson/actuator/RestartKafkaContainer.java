@@ -1,4 +1,4 @@
-package br.com.itau.kafka.handson.actuator;
+package br.com.leonardozv.kafka.handson.actuator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
@@ -6,7 +6,7 @@ import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.stereotype.Component;
 
-import br.com.itau.kafka.handson.services.KafkaConsumerService;
+import br.com.leonardozv.kafka.handson.services.KafkaConsumerService;
 
 @Component
 @Endpoint(id="restart-kafka-container")

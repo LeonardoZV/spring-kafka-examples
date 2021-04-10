@@ -1,4 +1,4 @@
-package br.com.itau.kafka.handson.services;
+package br.com.leonardozv.kafka.handson.services;
 
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData.Record;
@@ -26,16 +26,12 @@ public class KafkaProducerService {
 	public ListenableFuture<SendResult<String, Record>> produzir(String topico, Schema schema, JsonNode headerJson, JsonNode payload) throws Exception {
 
 		Decoder decoder = decoderFactory.jsonDecoder(schema, payload.toString());		
-		DatumReader<Record> reader = new GenericDatumReader<Record>(schema);		
+		DatumReader<Record> reader = new GenericDatumReader<>(schema);
 		Record genericRecord = reader.read(null, decoder);
-		ProducerRecord<String, Record> record = new ProducerRecord<String, Record>(topico, genericRecord);
+		ProducerRecord<String, Record> record = new ProducerRecord<>(topico, genericRecord);
 		
 		if (headerJson != null) {
-			
-			headerJson.fields().forEachRemaining(h -> {
-				record.headers().add(h.getKey(), h.getValue().asText().getBytes());
-			});
-			
+			headerJson.fields().forEachRemaining(h -> record.headers().add(h.getKey(), h.getValue().asText().getBytes()));
 		}
 
 		return this.kafkaTemplate.send(record);

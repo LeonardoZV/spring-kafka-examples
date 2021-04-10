@@ -1,9 +1,10 @@
-package br.com.itau.kafka.handson.controllers;
+package br.com.leonardozv.kafka.handson.controllers;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import br.com.leonardozv.kafka.handson.models.KafkaProducerRequestModel;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData.Record;
 import org.slf4j.Logger;
@@ -15,8 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.itau.kafka.handson.models.KafkaProducerRequestModel;
-import br.com.itau.kafka.handson.services.KafkaProducerService;
+import br.com.leonardozv.kafka.handson.services.KafkaProducerService;
 
 @RestController
 public class KafkaProducerController {
