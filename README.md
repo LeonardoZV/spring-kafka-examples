@@ -1,4 +1,4 @@
-# Handson Kafka
+# kafka-spring-java-exemplos
 
 Exemplo de Requisição para o endpoint POST /produzir:
 
