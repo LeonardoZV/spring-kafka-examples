@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.handson;
+package br.com.leonardozv.kafka.exemplos;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class KafkaHandsonApplication {
+public class KafkaSpringJavaExemplosApplication {
 
 	public static ConfigurableApplicationContext context;
 	
 	public static void main(String[] args) {
-		context = SpringApplication.run(KafkaHandsonApplication.class, args);
+		context = SpringApplication.run(KafkaSpringJavaExemplosApplication.class, args);
 	}
 	
 	public static void restart() {
@@ -20,7 +20,7 @@ public class KafkaHandsonApplication {
 		
 		Thread thread = new Thread(() -> {
 			context.close();
-			context = SpringApplication.run(KafkaHandsonApplication.class, args.getSourceArgs());			
+			context = SpringApplication.run(KafkaSpringJavaExemplosApplication.class, args.getSourceArgs());
 		});
 		
 		thread.setDaemon(false);

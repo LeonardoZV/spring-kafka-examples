@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.handson.config;
+package br.com.leonardozv.kafka.exemplos.config;
 
 import java.util.HashMap;
 import java.util.Map;

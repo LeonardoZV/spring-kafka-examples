@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.handson.models;
+package br.com.leonardozv.kafka.exemplos.models;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

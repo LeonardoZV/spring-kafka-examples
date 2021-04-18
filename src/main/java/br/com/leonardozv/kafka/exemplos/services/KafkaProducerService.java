@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.handson.services;
+package br.com.leonardozv.kafka.exemplos.services;
 
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData.Record;

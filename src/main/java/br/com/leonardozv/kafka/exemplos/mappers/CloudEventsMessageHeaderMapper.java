@@ -1,6 +1,6 @@
-package br.com.leonardozv.kafka.handson.mappers;
+package br.com.leonardozv.kafka.exemplos.mappers;
 
-import br.com.leonardozv.kafka.handson.models.CloudEventsMessageHeader;
+import br.com.leonardozv.kafka.exemplos.models.CloudEventsMessageHeader;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.MessageHeaders;
 

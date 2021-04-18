@@ -1,10 +1,10 @@
-package br.com.leonardozv.kafka.handson;
+package br.com.leonardozv.kafka.exemplos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KafkaHandsonApplicationTests {
+class KafkaSpringJavaExemplosApplicationTests {
 
 	@Test
 	void contextLoads() {

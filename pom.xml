@@ -7,11 +7,10 @@
 		<version>2.3.8.RELEASE</version>
 		<relativePath/>
 	</parent>
-	<groupId>br.com.itau.kafka</groupId>
-	<artifactId>kafka-handson</artifactId>
+	<groupId>br.com.leonardozv</groupId>
+	<artifactId>kafka-spring-java-exemplos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-handson</name>
-	<description>Demo project for Spring Boot</description>
+	<name>kafka-spring-java-exemplos</name>
 	
 	<properties>
 		<java.version>11</java.version>
