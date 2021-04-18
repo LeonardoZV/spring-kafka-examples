@@ -1,4 +1,4 @@
-# kafka-spring-java-exemplos
+# spring-kafka-exemplos
 
 Exemplo de Requisição para o endpoint POST /produzir:
 

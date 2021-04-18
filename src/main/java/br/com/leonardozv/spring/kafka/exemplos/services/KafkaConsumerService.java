@@ -1,9 +1,9 @@
-package br.com.leonardozv.kafka.exemplos.services;
+package br.com.leonardozv.spring.kafka.exemplos.services;
 
 import java.util.List;
 
-import br.com.leonardozv.kafka.exemplos.mappers.CloudEventsMessageHeaderMapper;
-import br.com.leonardozv.kafka.exemplos.models.CloudEventsMessageHeader;
+import br.com.leonardozv.spring.kafka.exemplos.mappers.CloudEventsMessageHeaderMapper;
+import br.com.leonardozv.spring.kafka.exemplos.models.CloudEventsMessageHeader;
 import org.apache.avro.generic.GenericData.Record;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

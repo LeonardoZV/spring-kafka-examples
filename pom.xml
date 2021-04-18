@@ -8,9 +8,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>br.com.leonardozv</groupId>
-	<artifactId>kafka-spring-java-exemplos</artifactId>
+	<artifactId>spring-kafka-exemplos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-spring-java-exemplos</name>
+	<name>spring-kafka-exemplos</name>
 	
 	<properties>
 		<java.version>11</java.version>

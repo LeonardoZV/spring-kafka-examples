@@ -1,10 +1,10 @@
-package br.com.leonardozv.kafka.exemplos.controllers;
+package br.com.leonardozv.spring.kafka.exemplos.controllers;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import br.com.leonardozv.kafka.exemplos.models.KafkaProducerRequestModel;
+import br.com.leonardozv.spring.kafka.exemplos.models.KafkaProducerRequestModel;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData.Record;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.leonardozv.kafka.exemplos.services.KafkaProducerService;
+import br.com.leonardozv.spring.kafka.exemplos.services.KafkaProducerService;
 
 @RestController
 public class KafkaProducerController {

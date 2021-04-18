@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.exemplos;
+package br.com.leonardozv.spring.kafka.exemplos;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class KafkaSpringJavaExemplosApplication {
+public class SpringKafkaExemplosApplication {
 
 	public static ConfigurableApplicationContext context;
 	
 	public static void main(String[] args) {
-		context = SpringApplication.run(KafkaSpringJavaExemplosApplication.class, args);
+		context = SpringApplication.run(SpringKafkaExemplosApplication.class, args);
 	}
 	
 	public static void restart() {
@@ -20,7 +20,7 @@ public class KafkaSpringJavaExemplosApplication {
 		
 		Thread thread = new Thread(() -> {
 			context.close();
-			context = SpringApplication.run(KafkaSpringJavaExemplosApplication.class, args.getSourceArgs());
+			context = SpringApplication.run(SpringKafkaExemplosApplication.class, args.getSourceArgs());
 		});
 		
 		thread.setDaemon(false);

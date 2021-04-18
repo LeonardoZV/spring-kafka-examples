@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.exemplos.models;
+package br.com.leonardozv.spring.kafka.exemplos.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

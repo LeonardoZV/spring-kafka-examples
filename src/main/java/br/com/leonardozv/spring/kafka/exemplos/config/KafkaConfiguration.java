@@ -1,4 +1,4 @@
-package br.com.leonardozv.kafka.exemplos.config;
+package br.com.leonardozv.spring.kafka.exemplos.config;
 
 import java.util.HashMap;
 import java.util.Map;
