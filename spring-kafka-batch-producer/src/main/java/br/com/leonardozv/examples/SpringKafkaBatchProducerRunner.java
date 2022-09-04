@@ -24,15 +24,17 @@ public class SpringKafkaBatchProducerRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws IOException {
 
-        String topic = "accounting-journal-entry-created";
-
-        Schema schema = new Schema.Parser().parse("{\"namespace\": \"example.avro\", \"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}");
-
-        String key = null;
+        String topic = "user-created";
 
         String header = null;
 
-        String payload = "{\"name\": \"testUser\" }";
+        String key = null;
+
+        Schema keySchema = null;
+
+        String value = "{\"name\": \"Leo\" }";
+
+        Schema valueSchema = new Schema.Parser().parse("{\"namespace\": \"example.avro\", \"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}");
 
         Integer batches = 1;
 
@@ -42,7 +44,7 @@ public class SpringKafkaBatchProducerRunner implements CommandLineRunner {
 
         stopWatch.start();
 
-        this.fakeDataProducerService.generateAndProduceEvents(topic, schema, key, header, payload, batches, eventsPerBatch);
+        this.fakeDataProducerService.generateAndProduceEvents(topic, header, key, keySchema, value, valueSchema, batches, eventsPerBatch);
 
         stopWatch.stop();
 

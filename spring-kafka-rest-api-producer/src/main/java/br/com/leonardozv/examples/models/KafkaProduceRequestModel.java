@@ -16,15 +16,18 @@ public class KafkaProduceRequestModel {
 	public String topic;
 
 	@Nullable
-	public String key;
-
-	@Nullable
 	public RecordHeaders headers;
 
-	@NotNull
-	public JsonNode payload;
+	@Nullable
+	public JsonNode key;
 
-	@NotNull
-	public JsonNode schema;
+	@Nullable
+	public JsonNode key_schema;
+
+	@Nullable
+	public JsonNode value;
+
+	@Nullable
+	public JsonNode value_schema;
 	
 }
